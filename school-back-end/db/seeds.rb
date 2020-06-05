@@ -41,6 +41,12 @@
 # ProfessorStudent.create(professor_id:1, student_id:1, professor_name:'aaaa', student_name:'jack')
 # ProfessorStudent.create(professor_id:1, student_id:2, professor_name:'aaaa', student_name:'tom')
 
-ProfessorClasse.create(professor_id:1, classe_id:1, professor_name:'aaaa', class_name:'6eme A')
-ProfessorClasse.create(professor_id:2, classe_id:1, professor_name:'bbbb', class_name:'6eme A')
+# ProfessorClasse.create(professor_id:1, classe_id:1, professor_name:'aaaa', class_name:'6eme A')
+# ProfessorClasse.create(professor_id:2, classe_id:1, professor_name:'bbbb', class_name:'6eme A')
 
+ClasseCourse.create(classe_id:1, course_id:1, classe_name:'6eme A', course_name:'math')
+ClasseCourse.create(classe_id:1, course_id:2, classe_name:'6eme A', course_name:'physics')
+
+
+StudentCourse.create(student_id:1, course_id:1, student_name:'jack', course_name:'math')
+StudentCourse.create(student_id:2, course_id:1, student_name:'tom', course_name:'math')

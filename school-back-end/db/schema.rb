@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_195926) do
+ActiveRecord::Schema.define(version: 2020_06_05_201849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "classe_courses", force: :cascade do |t|
+    t.bigint "classe_id", null: false
+    t.bigint "course_id"
+    t.string "classe_name"
+    t.string "course_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classe_id"], name: "index_classe_courses_on_classe_id"
+    t.index ["course_id"], name: "index_classe_courses_on_course_id"
+  end
 
   create_table "classes", force: :cascade do |t|
     t.string "title"
@@ -87,6 +98,17 @@ ActiveRecord::Schema.define(version: 2020_06_05_195926) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "student_courses", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "course_id"
+    t.string "student_name"
+    t.string "course_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_student_courses_on_course_id"
+    t.index ["student_id"], name: "index_student_courses_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.bigint "classe_id", null: false
     t.string "username"
@@ -100,6 +122,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_195926) do
     t.index ["classe_id"], name: "index_students_on_classe_id"
   end
 
+  add_foreign_key "classe_courses", "classes", column: "classe_id"
   add_foreign_key "courses", "professors"
   add_foreign_key "parent_students", "parents"
   add_foreign_key "parent_students", "students"
@@ -107,5 +130,6 @@ ActiveRecord::Schema.define(version: 2020_06_05_195926) do
   add_foreign_key "professor_classes", "professors"
   add_foreign_key "professor_students", "professors"
   add_foreign_key "professor_students", "students"
+  add_foreign_key "student_courses", "students"
   add_foreign_key "students", "classes", column: "classe_id"
 end
