@@ -35,5 +35,12 @@
 # Grade.create(title: "D")
 # Grade.create(title: "F") 
 
-ParentStudent.create(parent_id:1, student_id:1)
-ParentStudent.create(parent_id:2, student_id:2)
+# ParentStudent.create(parent_id:1, student_id:1)
+# ParentStudent.create(parent_id:2, student_id:2)
+
+# ProfessorStudent.create(professor_id:1, student_id:1, professor_name:'aaaa', student_name:'jack')
+# ProfessorStudent.create(professor_id:1, student_id:2, professor_name:'aaaa', student_name:'tom')
+
+ProfessorClasse.create(professor_id:1, classe_id:1, professor_name:'aaaa', class_name:'6eme A')
+ProfessorClasse.create(professor_id:2, classe_id:1, professor_name:'bbbb', class_name:'6eme A')
+

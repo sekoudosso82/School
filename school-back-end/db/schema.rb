@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_191828) do
+ActiveRecord::Schema.define(version: 2020_06_05_195926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,28 @@ ActiveRecord::Schema.define(version: 2020_06_05_191828) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "professor_classes", force: :cascade do |t|
+    t.bigint "professor_id", null: false
+    t.bigint "classe_id", null: false
+    t.string "professor_name"
+    t.string "class_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classe_id"], name: "index_professor_classes_on_classe_id"
+    t.index ["professor_id"], name: "index_professor_classes_on_professor_id"
+  end
+
+  create_table "professor_students", force: :cascade do |t|
+    t.bigint "professor_id", null: false
+    t.bigint "student_id", null: false
+    t.string "professor_name"
+    t.string "student_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["professor_id"], name: "index_professor_students_on_professor_id"
+    t.index ["student_id"], name: "index_professor_students_on_student_id"
+  end
+
   create_table "professors", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -81,5 +103,9 @@ ActiveRecord::Schema.define(version: 2020_06_05_191828) do
   add_foreign_key "courses", "professors"
   add_foreign_key "parent_students", "parents"
   add_foreign_key "parent_students", "students"
+  add_foreign_key "professor_classes", "classes", column: "classe_id"
+  add_foreign_key "professor_classes", "professors"
+  add_foreign_key "professor_students", "professors"
+  add_foreign_key "professor_students", "students"
   add_foreign_key "students", "classes", column: "classe_id"
 end

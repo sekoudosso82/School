@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :professor_classes
+    end
+  end
+  namespace :api do
+    namespace :v1 do
+      resources :professor_students
+    end
+  end
+  namespace :api do
+    namespace :v1 do
       resources :parent_students
     end
   end
