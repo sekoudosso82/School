@@ -2,11 +2,11 @@ class Api::V1::AuthController < ApplicationController
     #   skip_before_action :authorized, only: [ :login]
 
     def login
-        user = User.find_by(username: params[:username])
+      student = Student.find_by(username: params[:username])
     
-        if user && user.authenticate(params[:password])
-          token = encode_token(user.id)
-          render json: {user: user, token:token}
+        if student && student.authenticate(params[:password])
+          token = encode_token(student.id)
+          render json: {student: student, token:token}
         else
           render json: {errors: "Warnig case sensitive, try again!"}
         end
